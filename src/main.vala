@@ -17,7 +17,6 @@
 
 int main (string[] args)
 {
-	//Readline.bind_key(Readline.TAB, Readline.complete);
 	var app = new Nil.Application();
 	return app.run(args);
 }

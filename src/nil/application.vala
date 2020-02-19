@@ -15,11 +15,12 @@
  */
 
 public class Nil.Application : GLib.Application {
-	private string? filename;
-	private bool interactive = true;
+	private string[] filenames;
 
 	private const OptionEntry[] option_entries = {
-		{OPTION_REMAINING, '\0', 0, OptionArg.STRING_ARRAY, null, null},
+		{"compile", 'c', 0, OptionArg.NONE, null, "Compile but do not link", null},
+		{"output", 'o', 0, OptionArg.FILENAME, null, "Output to file FILE", "FILE"},
+		{OPTION_REMAINING, 0, 0, OptionArg.FILENAME_ARRAY, null, null, "FILE..."},
 		{null},
 	};
 
@@ -36,11 +37,10 @@ public class Nil.Application : GLib.Application {
 	protected override int command_line(ApplicationCommandLine command_line) {
 		var options = command_line.get_options_dict();
 		var filenames_variant = options.lookup_value(OPTION_REMAINING,
-		                                             VariantType.STRING_ARRAY);
+		                                             VariantType.BYTESTRING_ARRAY);
 		if (filenames_variant != null) {
-			var filenames = filenames_variant.get_strv();
-			filename = filenames[0];
-			interactive = false;
+			stdout.printf("not nothing\n");
+			filenames = {};
 		}
 		return 0;
 	}
