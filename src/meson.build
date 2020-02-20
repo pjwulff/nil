@@ -22,7 +22,6 @@ config_dep = declare_dependency(
     include_directories: include_directories('.'))
 
 nil_sources = [
-    'nil/application.vala',
     'main.vala',
 ]
 
